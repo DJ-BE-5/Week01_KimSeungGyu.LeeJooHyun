@@ -59,36 +59,33 @@ public class snc {
      */
     private static void runServer() {
         boolean running = true;
-        while (running){
             try (ServerSocket serverSocket = new ServerSocket(port)){
-                System.out.println("Server Connected");
-                Socket socket = serverSocket.accept();
-                System.out.println("Client Connected");
+            System.out.println("Server Connected");
+            Socket socket = serverSocket.accept();
+            System.out.println("Client Connected");
 
-                String message = "";
+            String message = "";
 
+            while(socket.isConnected()) {
                 BufferedInputStream input = new BufferedInputStream(socket.getInputStream());
                 BufferedOutputStream output = new BufferedOutputStream(socket.getOutputStream());
-
                 byte[] buffer = new byte[256];
                 int length = input.read(buffer, 0, buffer.length);
 
                 message = new String(Arrays.copyOf(buffer,length));
-                System.out.println(message);
+                System.out.print(message);
 
                 Scanner sc = new Scanner(System.in);
                 message = sc.nextLine();
                 message += "\n";
 
-                output.write(message.getBytes(),0,message.length());
+                output.write(message.getBytes());
                 output.flush();
-
-            } catch (IOException e) {
-                running = false;
-                System.err.println("Server Error : " + e);
             }
+        } catch (IOException e) {
+            running = false;
+            System.err.println("Server Error : " + e);
         }
-
     }
 
 
@@ -101,22 +98,26 @@ public class snc {
     private static void runClient(String serverIp, int port) {
         boolean running = true;
         Scanner sc = new Scanner(System.in);
-        while(running) {
-            try(Socket socket = new Socket(serverIp, port);
-                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
-                System.out.println("서버에 연결되었습니다. : " + socket.getInetAddress() + ":" + socket.getPort());
 
+        try(Socket socket = new Socket(serverIp, port);
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+            System.out.println("서버에 연결되었습니다. : " + socket.getInetAddress() + ":" + socket.getPort());
+
+            while(running) {
                 System.out.println("메시지를 입력해 주세요.");
-                bw.write(sc.nextLine());
-                bw.newLine();
-                bw.flush();
-
+                try {
+                    bw.write(sc.nextLine());
+                    bw.newLine();
+                    bw.flush();
+                } catch (IOException e) {
+                    running = false;
+                    System.err.println("Client Error : " + e);
+                }
                 System.out.println("서버로부터 받은 메시지 : " + br.readLine());
-            } catch(IOException e) {
-                running = false;
-                System.err.println("Client Error : " + e);
             }
+        } catch(IOException e) {
+            System.err.println("Client Error : " + e);
         }
     }
 }

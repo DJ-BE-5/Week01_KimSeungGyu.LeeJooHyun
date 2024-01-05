@@ -1,0 +1,23 @@
+
+W
+java:S1141m"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¸Ñ¡ÌÍ1
+>
+java:S1643P"Use a StringBuilder instead.(¼ŸõÁüÿÿÿÿ8ûĞ©ÌÍ1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(õ£Ö 8¸Ñ¡ÌÍ1
+L	java:S106&"+Replace this use of System.out by a logger.(Û¬çŞøÿÿÿÿ8ÚÑ¡ÌÍ1
+L	java:S1062"+Replace this use of System.out by a logger.(Û¬çŞøÿÿÿÿ8ÛÑ¡ÌÍ1
+I
+java:S1481=",Remove this unused "running" local variable.(ÕöÙ8ÛÑ¡ÌÍ1
+G	java:S106?"+Replace this use of System.out by a logger.(Û°…ë8ÜÑ¡ÌÍ1
+G	java:S106A"+Replace this use of System.out by a logger.(ÍıÍÂ8İÑ¡ÌÍ1
+G	java:S106L"+Replace this use of System.out by a logger.(ÌË§„8ãÑ¡ÌÍ1
+G	java:S106W"+Replace this use of System.err by a logger.(ÿÉˆ€8æÑ¡ÌÍ1
+G	java:S106i"+Replace this use of System.out by a logger.(×ÎõÓ8êÑ¡ÌÍ1
+G	java:S106l"+Replace this use of System.out by a logger.(æš×…8ëÑ¡ÌÍ1
+L	java:S106s"+Replace this use of System.err by a logger.(ĞÍ„ øÿÿÿÿ8îÑ¡ÌÍ1
+L	java:S106u"+Replace this use of System.out by a logger.(«¯¨›şÿÿÿÿ8íÑ¡ÌÍ1
+L	java:S106x"+Replace this use of System.err by a logger.(ĞÍ„ øÿÿÿÿ8ˆ™¢ÌÍ1
+Q
+java:S1128"4Remove this unused import 'org.w3c.dom.ls.LSOutput'.(Ò½¾Š8âàªÌÍ1
+Q
+java:S1128"/Remove this unused import 'java.sql.SQLOutput'.(ê¤òÃùÿÿÿÿ8âàªÌÍ1
