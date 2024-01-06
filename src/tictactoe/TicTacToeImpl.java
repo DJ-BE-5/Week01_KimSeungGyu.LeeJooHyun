@@ -3,7 +3,6 @@ package tictactoe;
 public class TicTacToeImpl implements TicTacToe {
     @Override
     public void putStone(int userId, int x, int y) {
-
     }
 
     @Override
