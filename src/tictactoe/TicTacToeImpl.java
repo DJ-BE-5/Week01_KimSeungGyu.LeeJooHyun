@@ -1,5 +1,7 @@
 package tictactoe;
 
+import java.awt.event.WindowFocusListener;
+
 /**
  * TicTacToe 인터페이스를 구현한 구현체 클래스
  * @author : 김승규
@@ -15,9 +17,20 @@ public class TicTacToeImpl implements TicTacToe {
      * 게임이 끝났는지 확인한다.
      */
     private void checkFinish() {
-        isFinished = count == SIZE * SIZE ||
-                board[0][0] != null && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2]) ||
-                board[0][2] != null && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0]);
+        if(count == SIZE * SIZE) {
+            isFinished = true;      // 보드판이 꽉 찬 경우
+        } else if(board[0][0] != null && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2]) ||
+                board[0][2] != null && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])) {
+            isFinished = true;      // 대각선 승리
+        } else {
+            for(int i = 0; i < SIZE; ++i) {
+                if(board[i][0] != null && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]) ||
+                        board[0][i] != null && board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i])) {
+                    isFinished = true;  // 직선 승리
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -41,7 +54,7 @@ public class TicTacToeImpl implements TicTacToe {
             for(int j = 0; j < SIZE; ++j) {
                 printBoard.append("[").append(board[i][j] == null ? " " : board[i][j]).append("] ");
             }
-            printBoard.append("\n");
+            printBoard.append("-");
         }
         return printBoard.toString();
     }
